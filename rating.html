@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>In Driver</title>
+</head>
+<body>
+    <div class="box">
+        <h1 class="title is-1">⭐ Ratings</h1>
+        <h2 class="subtitle is-3">Fill the camps to add a new rating</h2>
+    </div>
+    <div class="box my-6">
+        <div class="field">
+            <label class="label" for="ratingID">Rating ID:</label>
+            <div class="control">
+                <input class="input" type="text" id="ratingID" placeholder="Example: 48947-112347-44328979, etc">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="userID">User ID:</label>
+            <div class="control">
+                <input class="input" type="text" id="userID" placeholder="Example: 14 or 7 or 110, etc (A registed user on the databse)">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="driverID">Driver ID:</label>
+            <div class="control">
+                <input class="input" type="text" id="driverID" placeholder="Example: 18 or 17 or 2447, etc (A registed driver on the databse)">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="rating">Rating:</label>
+            <div class="control">
+                <div class="select is-fullwidth">
+                    <select id="rating">
+                        <option value="1">[1] Bad</option>
+                        <option value="2">[2] Regular</option>
+                        <option value="3">[3] Average</option>
+                        <option value="4">[4] Good</option>
+                        <option value="5">[5] Excellent</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="ratingDescription">Rating Description:</label>
+            <div class="control">
+                <input class="input" type="text" id="ratingDescription" placeholder="Example: I'm very satisfied/distressed because...">
+            </div>
+        </div>
+        <div class="block">
+            <button class="button is-primary is-meidum is-fullwidth mt-6" onclick="submitForm()">Submit</button>
+        </div>
+    </div>
+    <script>
+        function submitForm() {
+
+            function getValues() {
+                return {
+                    ratingID: document.getElementById('ratingID').value,
+                    userID: document.getElementById('userID').value,
+                    driverID: document.getElementById('driverID').value,
+                    rating: document.getElementById('rating').value,
+                    ratingDescription: document.getElementById('ratingDescription').value,
+                }
+            }
+            
+            const url = 'http://localhost:3000/rating';
+            const method = 'POST';
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            };
+            const body = JSON.stringify(getValues());
+            const medatata = { method, headers, body };
+            fetch(url, medatata)
+            .then(response => response.json())
+            .then(response => console.log(JSON.stringify(response)))
+        }
+    </script>
+</body>
+</html>

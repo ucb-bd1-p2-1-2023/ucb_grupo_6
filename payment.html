@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>In Driver</title>
+</head>
+<body>
+    <div class="box">
+        <h1 class="title is-1">💵 Payments Form</h1>
+        <h2 class="subtitle is-3">Fill the camps to register the payment details</h2>
+    </div>
+    <div class="box my-6">
+        <div class="field">
+            <label class="label" for="paymentID">Payment ID:</label>
+            <div class="control">
+                <input class="input" type="text" id="paymentID" placeholder="Exammple: 11324-91324, etc.">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="userID">User ID:</label>
+            <div class="control">
+                <input class="input" type="text" id="userID" placeholder="Exammple: 1, 2, 3 (a valid reference)">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="ammountPay">Ammount Payed:</label>
+            <div class="control">
+                <input class="input" type="text" id="ammountPay" placeholder="Exammple: Carlos">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="datePay">Date of the payment:</label>
+            <div class="control">
+                <input class="input" type="text" id="datePay" placeholder="Example: Terraza">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="typePay">Type of the payment:</label>
+            <div class="control">
+                <div class="select is-fullwidth">
+                    <select id="typePay">
+                        <option value="1">[1] Cash</option>
+                        <option value="2">[2] Card</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="block">
+            <button class="button is-primary is-meidum is-fullwidth mt-6" onclick="submitForm()">Submit</button>
+        </div>
+    </div>
+    <script>
+        function submitForm() {
+
+            function getValues() {
+                return {
+                    paymentID: document.getElementById('paymentID').value,
+                    userID: document.getElementById('userID').value,
+                    ammountPay: document.getElementById('ammountPay').value,
+                    datePay: document.getElementById('datePay').value,
+                    typePay: document.getElementById('typePay').value,
+                }
+            }
+
+            const url = 'http://localhost:3000/payment';
+            const method = 'POST';
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            };
+            const body = JSON.stringify(getValues());
+            const medatata = { method, headers, body };
+            fetch(url, medatata)
+            .then(response => response.json())
+            .then(response => console.log(JSON.stringify(response)))
+        }
+    </script>
+</body>
+</html>

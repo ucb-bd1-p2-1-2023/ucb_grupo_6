@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>In Driver</title>
+</head>
+<body>
+    <div class="box">
+        <h1 class="title is-1">🌇 Travels Form</h1>
+        <h2 class="subtitle is-3">Fill the camps to register a travel destination</h2>
+    </div>
+    <div class="box my-6">
+        <div class="field">
+            <label class="label" for="travelID">Travel ID:</label>
+            <div class="control">
+                <input class="input" type="text" id="travelID" placeholder="Example: 789AC1-1423ZXC-44567, etc">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="userID">User ID:</label>
+            <div class="control">
+                <input class="input" type="text" id="userID" placeholder="Example: 14 (make sure to reference a user that exists!)">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="driverID">Driver ID:</label>
+            <div class="control">
+                <input class="input" type="text" id="driverID" placeholder="Example: 14 (make sure to reference a driver that exists!)">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="vehicleID">Vehicle ID:</label>
+            <div class="control">
+                <input class="input" type="text" id="vehicleID" placeholder="Example: 48 (make sure to reference a vehicle that exists!)">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="originPoint">Origin:</label>
+            <div class="control">
+                <input class="input" type="text" id="originPoint" placeholder="Exammple: Av. Something">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="destination">Destination:</label>
+            <div class="control">
+                <input class="input" type="text" id="destination" placeholder="Example: Av. Imagination">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="dateTrip">Date of the trip:</label>
+            <div class="control">
+                <input class="input" type="text" id="dateTrip" placeholder="Example: 01-01-1999">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="tripDuration">Trip duration:</label>
+            <div class="control">
+                <input class="input" type="text" id="tripDuration" placeholder="Example: 1h 30m">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="priceTrip">Price:</label>
+            <div class="control">
+                <input class="input" type="text" id="priceTrip" placeholder="Example: 200-300-400">
+            </div>
+        </div>
+        <div class="block">
+            <button class="button is-primary is-meidum is-fullwidth mt-6" onclick="submitForm()">Submit</button>
+        </div>
+    </div>
+    <script>
+        function submitForm() {
+
+            function getValues() {
+                return {
+                    travelID: document.getElementById('travelID').value,
+                    userID: document.getElementById('userID').value,
+                    driverID: document.getElementById('driverID').value,
+                    vehicleID: document.getElementById('vehicleID').value,
+                    originPoint: document.getElementById('originPoint').value,
+                    destination: document.getElementById('destination').value,
+                    dateTrip: document.getElementById('dateTrip').value,
+                    tripDuration: document.getElementById('tripDuration').value,
+                    priceTrip: document.getElementById('priceTrip').value,
+                }
+            }
+            
+            const url = 'http://localhost:3000/travel';
+            const method = 'POST';
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            };
+            const body = JSON.stringify(getValues());
+            const medatata = { method, headers, body };
+            fetch(url, medatata)
+            .then(response => response.json())
+            .then(response => console.log(JSON.stringify(response)))
+        }
+    </script>
+</body>
+</html>

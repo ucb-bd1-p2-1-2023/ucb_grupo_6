@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>In Driver</title>
+</head>
+<body>
+    <div class="box">
+        <h1 class="title is-1">✨ Promotions Form</h1>
+        <h2 class="subtitle is-3">Fill the camps to add a new promotion</h2>
+    </div>
+    <div class="box my-6">
+        <div class="field">
+            <label class="label" for="promotionID">Promotion ID:</label>
+            <div class="control">
+                <input class="input" type="text" id="promotionID" placeholder="Exammple: 123459-4577894-423123, etc">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="userID">User ID:</label>
+            <div class="control">
+                <input class="input" type="text" id="userID" placeholder="Exammple: 1, 74, 123789, etc (a valid reference to an existing user).">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="promoCode">Promo Code:</label>
+            <div class="control">
+                <input class="input" type="text" id="promoCode" placeholder="Exammple: 14567-9123A-ZXZ44">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="datePromo">Promo Expiration Date:</label>
+            <div class="control">
+                <input class="input" type="text" id="datePromo" placeholder="Example: 01-01-2023">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="discountPromo">Promo Discount:</label>
+            <div class="control">
+                <input class="input" type="text" id="discountPromo" placeholder="Example: 20-30-40-50">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="descriptionPromo">Promo Description:</label>
+            <div class="control">
+                <input class="input" type="text" id="descriptionPromo" placeholder="Example: We're doing this promo because...">
+            </div>
+        </div>
+        <div class="block">
+            <button class="button is-primary is-meidum is-fullwidth mt-6" onclick="submitForm()">Submit</button>
+        </div>
+    </div>
+    <script>
+        function submitForm() {
+
+            function getValues() {
+                return {
+                    promotionID: document.getElementById('promotionID').value,
+                    userID: document.getElementById('userID').value,
+                    promoCode: document.getElementById('promoCode').value,
+                    datePromo: document.getElementById('datePromo').value,
+                    discountPromo: document.getElementById('discountPromo').value,
+                    descriptionPromo: document.getElementById('descriptionPromo').value,
+                }
+            }
+
+            const url = 'http://localhost:3000/promotion';
+            const method = 'POST';
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            };
+            const body = JSON.stringify(getValues());
+            const medatata = { method, headers, body };
+            fetch(url, medatata)
+            .then(response => response.json())
+            .then(response => console.log(JSON.stringify(response)))
+        }
+    </script>
+</body>
+</html>

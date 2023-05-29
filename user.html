@@ -5,14 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <title>In Driver</title>
+    <title>User Registration</title>
 </head>
 <body>
     <div class="box">
-        <h1 class="title is-1">👤 User Form</h1>
-        <h2 class="subtitle is-3">Fill your data in this form v2</h2>
+        <h1 class="title is-1">👤 Users Form</h1>
+        <h2 class="subtitle is-3">Fill the camps to add the new user</h2>
     </div>
     <div class="box my-6">
+        <div class="field">
+            <label class="label" for="userID">User ID:</label>
+            <div class="control">
+                <input class="input" type="text" id="userID" placeholder="Exammple: Carlos">
+            </div>
+        </div>
         <div class="field">
             <label class="label" for="firstName">First name:</label>
             <div class="control">
@@ -30,15 +36,27 @@
             <div class="control">
                 <input class="input" type="text" id="email" placeholder="Example: carlos@gmail.com">
             </div>
-        <!--
-        </div>
         <div class="field">
-            <label class="label" for="telephone">Telephone:</label>
+            <label class="label" for="country">Country:</label>
             <div class="control">
-                <input class="input" type="text" id="telephone" placeholder="Example: 4280936">
+                 <input class="input" type="text" id="country" placeholder="Example: España">
+            </div>
+         <div class="field">
+            <label class="label" for="birthday">Birthday:</label>
+            <div class="control">
+                <input class="input" type="text" id="birthday" placeholder="Example: 01-01-1999">
+            </div>
+        <div class="field">
+            <label class="label" for="city">City:</label>
+            <div class="control">
+                <input class="input" type="text" id="city" placeholder="Example: Andorra">
+            </div>
+        <div class="field">
+            <label class="label" for="phone">Phone:</label>
+            <div class="control">
+                <input class="input" type="text" id="phone" placeholder="Example: 40000000">
             </div>
         </div>
-        -->
         <div class="block">
             <button class="button is-primary is-meidum is-fullwidth mt-6" onclick="submitForm()">Submit</button>
         </div>
@@ -48,14 +66,18 @@
 
             function getValues() {
                 return {
+                    userID: document.getElementById('userID').value,
                     firstName: document.getElementById('firstName').value,
                     lastName: document.getElementById('lastName').value,
                     email: document.getElementById('email').value,
+                    country: document.getElementById('country').value,
+                    birthday: document.getElementById('birthday').value,
+                    city: document.getElementById('city').value,
+                    phone: document.getElementById('phone').value,
                 }
-            }
-            
+            }            
 
-            const url = 'http://localhost:3000/driver';
+            const url = 'http://localhost:3000/user';
             const method = 'POST';
             const headers = {
                 'Accept': 'application/json',
